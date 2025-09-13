@@ -1,0 +1,68 @@
+producer_name: What is the name of the insurance producer company name who issued the certificate?
+producer_address: What is the full address of the insurance producer along with the name of the insurance producer? (This may include street, city, state, ZIP code.)
+
+insured_name: What is the name of the insured company or entity listed on the certificate?
+insured_address: What is the full mailing or physical address of the insured company along with the name of the insured company or entity listed on the certificate?
+
+certificate_holder_name: Who is the certificate holder (the entity receiving proof of insurance)?
+certificate_holder_address: What is the address of the certificate holder? (Street, city, state, ZIP code — listed directly below the holder name.)
+
+commercial_general_liability_name: What is the type of insurance as per it's name?
+commercial_general_liability_policy_number: What is the policy number for Commercial General Liability?
+commercial_general_liability_insurer_name: Who is the insurer for Commercial General Liability?
+commercial_general_liability_claims_basis: Is the policy Claims-Made or Occurrence?
+commercial_general_liability_effective_start: What is the effective start date of the CGL policy?
+commercial_general_liability_effective_end: What is the expiration date of the CGL policy?
+commercial_general_liability_each_occurrence_limit: What is the 'Each Occurrence' limit?
+commercial_general_liability_damage_to_rented_premises_limit: What is the 'Damage to Rented Premises' limit?
+commercial_general_liability_med_expense_limit: What is the 'Medical Expense (Any one person)' limit?
+commercial_general_liability_personal_adv_injury_limit: What is the 'Personal & Advertising Injury' limit?
+commercial_general_liability_general_aggregate_limit: What is the 'General Aggregate' limit?
+commercial_general_liability_products_comp_op_aggregate_limit: What is the 'Products-Completed Operations Aggregate' limit?
+commercial_general_liability_additional_insured: Is Additional Insured marked for this policy?
+commercial_general_liability_subrogation: Is Subrogation Waived for this policy?
+
+automobile_liability_name: What is the type of insurance as per it's name?
+automobile_liability_policy_number: What is the policy number for Automobile Liability?
+automobile_liability_insurer_name: Who is the insurer for Automobile Liability?
+automobile_liability_coverage_type: What types of autos are covered? (e.g., any auto, owned, scheduled, hired, non-owned)
+automobile_liability_effective_start: What is the effective start date of the auto policy?
+automobile_liability_effective_end: What is the expiration date of the auto policy?
+automobile_liability_combined_single_limit: What is the 'Combined Single Limit (Each accident)'?
+automobile_liability_additional_insured: Is Additional Insured marked for this policy?
+automobile_liability_subrogation: Is Subrogation Waived for this policy?
+
+umbrella_liability_name: What is the type of insurance as per it's name?
+umbrella_liability_policy_number: What is the policy number for Umbrella Liability?
+umbrella_liability_insurer_name: Who is the insurer for Umbrella Liability?
+umbrella_liability_effective_start: What is the effective start date of the umbrella policy?
+umbrella_liability_effective_end: What is the expiration date of the umbrella policy?
+umbrella_liability_claims_basis: Is the policy Claims-Made or Occurrence?
+umbrella_liability_each_occurrence_limit: What is the 'Each Occurrence' limit?
+umbrella_liability_aggregate_limit: What is the 'Aggregate' limit?
+umbrella_liability_retention_amount: What is the deductible or self-insured retention amount (if mentioned)?
+
+workers_compensation_name: What is the type of insurance as per it's name?
+workers_compensation_policy_number: What is the policy number for Workers Compensation?
+workers_compensation_insurer_name: Who is the insurer for Workers Compensation?
+workers_compensation_effective_start: What is the effective start date of the WC policy?
+workers_compensation_effective_end: What is the expiration date of the WC policy?
+workers_compensation_each_accident_limit: What is the 'Each Accident' or combined limit?
+workers_compensation_disease_policy_limit: Disease – policy limit?
+workers_compensation_disease_each_employee_limit: Disease – each employee limit?
+workers_compensation_compliance: Does the policy comply with workers compensation statutes?
+workers_compensation_exclusion: Are any proprietors, partners, or officers excluded?
+
+property_insurance_policy_number: What is the policy number for Property Insurance?
+property_insurance_insurer: Who is the insurer for Property Insurance?
+property_insurance_effective_start: What is the effective start date of the Property policy?
+property_insurance_effective_end: What is the expiration date of the Property policy?
+property_insurance_limit: What is the property coverage limit?
+property_insurance_additional_insured: Is Additional Insured marked for this policy?
+property_insurance_subrogation: Is Subrogation Waived for this policy?
+
+description_of_operations: What is written in the “Description of Operations” section?
+description_of_operations_entitlement: What are the named insured entities listed in the description?
+description_of_operations_addresses: What are the location addresses mentioned in the description?
+
+notice_of_cancellation: Is there any statement about 'Notice of Cancellation'?

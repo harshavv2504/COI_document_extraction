@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR and Data Extraction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100" style="font-size: 0.9rem;">
+    <div id="app-container">
+        <!-- Top Navigation Bar -->
+        <nav class="top-bar flex justify-between items-center">
+            <div class="logos">
+                <img src="/static/images/indivillage-tech-solutions.png" alt="IndiVillage Logo" class="logo">
+                <img src="/static/images/tiarna-logo.png" alt="Tiarna Logo" class="logo">
+            </div>
+            <div class="right-nav-items flex items-center space-x-4">
+                <div class="tabs flex space-x-4">
+                    <button class="tab-button active" data-tab="summary-tab">Summary</button>
+                    <button class="tab-button" data-tab="upload-tab">Upload</button>
+                    <button class="tab-button" data-tab="generate-tab">Generate</button>
+                </div>
+                <a href="#" class="nav-link logout">Logout</a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Summary Tab Content -->
+            <div id="summary-tab" class="tab-content active">
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card total-docs-card">
+                        <h4>Total Documents</h4>
+                        <p id="total-docs">0</p>
+                    </div>
+                    <div class="stat-card finished-docs-card">
+                        <h4>Documents Finished</h4>
+                        <p id="finished-docs">0</p>
+                    </div>
+                    <div class="stat-card awaiting-verification-card">
+                        <h4>Awaiting Verification</h4>
+                        <p id="awaiting-verification">0</p>
+                    </div>
+                    <div class="stat-card being-analyzed-card">
+                        <h4>Being Analyzed</h4>
+                        <p id="being-analyzed">0</p>
+                    </div>
+                </div>
+
+                <!-- Document Library -->
+                <div class="document-library">
+                    <div class="library-header">
+                        <h2>Document Library</h2>
+                        <div class="library-actions hidden">
+                            <input type="text" placeholder="Search by name or ID...">
+                            <select><option>All Status</option></select>
+                            <button class="btn-upload-new">+ Upload New</button>
+                        </div>
+                    </div>
+                    <table class="document-table">
+                        <thead>
+                            <tr>
+                                <th>Document Name</th>
+                                <th>Client ID</th>
+                                <th>Tenant Code</th>
+                                <th>Property #</th>
+                                <th>Action</th>
+                                <th>Upload Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documents-table-body">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Upload Tab Content -->
+            <div id="upload-tab" class="tab-content hidden">
+                <a href="#" id="back-to-library-link" class="back-to-library-link">&larr; Back to Document Library</a>
+                <div class="card">
+                    <form id="upload-form">
+                        <div id="drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-6">
+                            <p class="mb-2">Drag & drop a PDF file here or <a href="#" class="text-blue-500" onclick="document.getElementById('file-input').click(); return false;">click to browse</a>.</p>
+                            <p class="text-sm text-gray-500">Single PDF file only.</p>
+                            <input type="file" id="file-input" name="file" class="hidden" accept=".pdf">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <label for="custom-name" style="display: block; font-size: 0.75rem; margin-bottom: 0.1rem; color: #4a5568; font-weight: 500;">Custom Name (Optional)</label>
+                                <input type="text" id="custom-name" name="custom_name" style="padding: 0.3rem; font-size: 0.8rem; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e0; border-radius: 0.25rem;" placeholder="e.g., 'Client X - Lease Agreement'">
+                            </div>
+                            <div>
+                                <label for="external-id" style="display: block; font-size: 0.75rem; margin-bottom: 0.1rem; color: #4a5568; font-weight: 500;">External ID (Optional)</label>
+                                <input type="text" id="external-id" name="external_id" style="padding: 0.3rem; font-size: 0.8rem; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e0; border-radius: 0.25rem;" placeholder="e.g., 'CLIENT-12345'">
+                            </div>
+                            <div>
+                                <label for="tenant-code" style="display: block; font-size: 0.75rem; margin-bottom: 0.1rem; color: #4a5568; font-weight: 500;">Tenant Code</label>
+                                <input type="text" id="tenant-code" name="tenant_code" style="padding: 0.3rem; font-size: 0.8rem; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e0; border-radius: 0.25rem;" placeholder="e.g., 'TC-001'">
+                            </div>
+                            <div>
+                                <label for="property-no" style="display: block; font-size: 0.75rem; margin-bottom: 0.1rem; color: #4a5568; font-weight: 500;">Property # *</label>
+                                <input type="text" id="property-no" name="property_no" style="padding: 0.3rem; font-size: 0.8rem; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e0; border-radius: 0.25rem;" placeholder="e.g., 'PROP-987'" required>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 1rem;">
+                            <label for="action" style="display: block; font-size: 0.75rem; margin-bottom: 0.1rem; color: #4a5568; font-weight: 500;">Action *</label>
+                            <select id="action" name="action" style="padding: 0.3rem; font-size: 0.8rem; width: 100%; box-sizing: border-box; border: 1px solid #cbd5e0; border-radius: 0.25rem;" required>
+                                <option value="">Select an action</option>
+                                <option value="add">Add</option>
+                                <option value="delete">Delete</option>
+                                <option value="move">Move</option>
+                                <option value="change">Change</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-8 upload-button-container">
+                            <button type="submit" id="upload-submit-btn" class="btn upload-button" disabled>Upload Document</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Generate Tab Content -->
+            <div id="generate-tab" class="tab-content hidden">
+                <div class="card">
+                    <h2 class="text-2xl font-semibold mb-4">Generate Report</h2>
+                    <div class="mb-4">
+                        <label for="processed-files-dropdown" class="block mb-2">Select a processed file:</label>
+                        <select id="processed-files-dropdown" class="w-full p-2 border rounded">
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                    <div class="mb-4 hidden" id="form-and-buttons-container">
+                        <form id="json-form-container" class="w-full max-w-6xl mx-auto p-4 border rounded bg-gray-50 mb-4" method="POST">
+                            <!-- Editable form will be generated here -->
+                        </form>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <button id="save-progress-btn" class="btn">Save Progress</button>
+                                <button id="mark-complete-btn" class="btn ml-2">Mark as Complete</button>
+                            </div>
+                            <button id="download-report-btn" class="btn-secondary">Download Report</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=1.3"></script>
+
+    <div id="toast-notification" class="toast-notification">
+        Document saved! Status: In Progress.
+    </div>
+</body>
+</html>
