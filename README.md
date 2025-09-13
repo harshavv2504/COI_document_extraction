@@ -1,4 +1,4 @@
-# Tiarna COI Extraction Platform
+# Real Estate COI Extraction Platform
 
 > **Automated Certificate of Insurance Processing with AI-Powered Data Extraction**
 
@@ -245,7 +245,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🏢 About
 
-**Tiarna COI Extraction Platform** is developed by **IndiVillage Tech Solutions** to streamline insurance document processing workflows. The platform combines cutting-edge AI technology with practical business needs to deliver accurate, efficient, and professional document processing solutions.
+**Real Estate COI Extraction Platform** is developed by **me** to streamline insurance document processing workflows. The platform combines cutting-edge AI technology with practical business needs to deliver accurate, efficient, and professional document processing solutions.
 
 ---
 
